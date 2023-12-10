@@ -1,5 +1,7 @@
 
 class Renderer {
+
+  
     renderMainUser(userobject) {
       const source = $("#meanUser-template").html()
       const template = Handlebars.compile(source)
@@ -30,8 +32,15 @@ class Renderer {
     renderFriends(friends) {
         const source = $("#friends-template").html()
         const template = Handlebars.compile(source)
-        const newHTML = template({ friends })
+        const newHTML = template({ friends })    
         $(".friends-container").html(newHTML)
+      }
+
+      rendersaveFriends(items) {
+        const source = $("#saveFriends-template").html()
+        const template = Handlebars.compile(source)
+        const newHTML = template({items})
+        $(".saveFriends-container").html(newHTML)
       }
   }
   

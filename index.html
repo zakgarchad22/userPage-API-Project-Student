@@ -4,10 +4,10 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>API Project</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
     <script src="https://code.jquery.com/jquery-3.3.1.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
     <script src="renderer.js"></script>
@@ -16,7 +16,17 @@
 </head>
 <body>
   <div class="container">
+
     <div class="user-container"></div>
+
+
+ 
+    <div class="dropdown">
+        <button id="btnToggleDropdown">Friends</button>
+        <div class="saveFriends-container dropdown-content"></div>
+    </div>
+
+
     <div class="quote-container"></div>	
     <div class="content-container">	
         <div class="pokemon-container"></div>	
@@ -28,8 +38,11 @@
         </div>	
     </div>	
     <div class="buttons">	
-        <button>Load User Data</button>	
-        <button>Display User</button>	
+        <button id="btnGen">Generate User</button>
+        <button id="btnSave">Save User Page</button>
+        <button id="btnLoad">Load User Page</button>
+        <button id="btnSavedFirends">Saved friends</button>
+
     </div>	
   </div>
 
@@ -37,6 +50,7 @@
   <script id="meanUser-template" type="text/x-handlebars-template">
     <img src="{{picture.medium}}" id="profile-pic">
     {{name.first}} {{name.last}}
+
   </script>
       <script id="quote-template" type="text/x-handlebars-template">
         <p>Favorite quote : </p> {{quote}}
@@ -55,5 +69,12 @@
             <p>{{name.first}} {{name.last}}</p>
         {{/each}}
     </script>
+    <script id="saveFriends-template" type="text/x-handlebars-template">
+
+        {{#each items}}
+            <li class="renderObject" data-index="{{@index}}">{{this.meanUser.name.first}}</li>
+        {{/each}}
+    </script>
+    
 </body>
 </html>

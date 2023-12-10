@@ -1,9 +1,8 @@
-//This is the class that will manage all your APIs
-
 class APIManager 
 {
     constructor() {
         this.data = {}
+        this.saves = {}
     }
 
     fetchData(callback) 
@@ -23,11 +22,23 @@ class APIManager
                 meat: data[3][0],
                 friends: users.results.slice(1)
             }
-
+            this.saveNewData()
             if(callback){
                 callback(this.data)
             }
             
         })
     }
+    getData()
+    {
+        return this.saves
+    }
+    saveNewData()
+    {
+        this.saves = this.data
+       
+
+    }
+
+
 }
