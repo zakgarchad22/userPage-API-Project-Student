@@ -1,47 +1,33 @@
-
 class Renderer {
-
   
-    renderMainUser(userobject) {
-      const source = $("#meanUser-template").html()
-      const template = Handlebars.compile(source)
-      const newHTML = template( userobject )
-      $(".user-container").html(newHTML)
-    }
-
-        renderQuote(quote) {   
-        const source = $("#quote-template").html()
-        const template = Handlebars.compile(source)
-        const newHTML = template({ quote })
-        $(".quote-container").html(newHTML)
-      }
-  
-      renderPokemon(pokemon) {
-        const source = $("#pokemon-template").html()
-        const template = Handlebars.compile(source)
-        const newHTML = template({pokemon })
-        $(".pokemon-container").html(newHTML)
-    }
-    renderMeat(meat) {
-        const source = $("#meat-template").html()
-        const template = Handlebars.compile(source)
-        const newHTML = template({meat})
-        $(".meat-container").html(newHTML)
-    }
-
-    renderFriends(friends) {
-        const source = $("#friends-template").html()
-        const template = Handlebars.compile(source)
-        const newHTML = template({ friends })    
-        $(".friends-container").html(newHTML)
-      }
-
-      rendersaveFriends(items) {
-        const source = $("#saveFriends-template").html()
-        const template = Handlebars.compile(source)
-        const newHTML = template({items})
-        $(".saveFriends-container").html(newHTML)
-      }
+  renderContent(classHTML, ID, data) {
+    const source = $(`#${ID}`).html()
+    const template = Handlebars.compile(source)
+    const newHTML = template(data)
+    $(`.${classHTML}`).html(newHTML)
   }
-  
- 
+
+  renderMainUser(userobject) {
+    this.renderContent('user-container', 'meanUser-template', userobject)
+  }
+
+  renderQuote(quote) {
+    this.renderContent('quote-container', 'quote-template', { quote })
+  }
+
+  renderPokemon(pokemon) {
+    this.renderContent('pokemon-container', 'pokemon-template', { pokemon })
+  }
+
+  renderMeat(meat) {
+    this.renderContent('meat-container', 'meat-template', { meat })
+  }
+
+  renderFriends(friends) {
+    this.renderContent('friends-container', 'friends-template', { friends })
+  }
+
+  rendersaveFriends(items) {
+    this.renderContent('saveFriends-container', 'saveFriends-template', { items })
+  }
+}

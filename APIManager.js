@@ -2,16 +2,25 @@ class APIManager
 {
     constructor() {
         this.data = {}
-        this.saves = {}
+        this.currentUser = {}
+
     }
 
-    fetchData(callback) 
+    fetchData() 
     {
-        Promise.all([
-            $.get('https://randomuser.me/api/?results=7'),
-            $.get('https://api.kanye.rest/'),
-            $.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 950)}`),
-            $.get('https://baconipsum.com/api/?type=meat')
+        const numberUsers = 7
+
+        const randomUserApi = `https://randomuser.me/api/?results=${numberUsers}`
+        const kanyeApi = 'https://api.kanye.rest/'
+        const pokemonApi = `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 950)}`
+        const meatApi = 'https://baconipsum.com/api/?type=meat'
+        
+        return Promise.all([
+
+            $.get(randomUserApi),
+            $.get(kanyeApi),
+            $.get(pokemonApi),
+            $.get(meatApi)
         ]).then(data => 
             {
             const users = data[0]
@@ -22,23 +31,9 @@ class APIManager
                 meat: data[3][0],
                 friends: users.results.slice(1)
             }
-            this.saveNewData()
-            if(callback){
-                callback(this.data)
-            }
-            
+                   
         })
     }
-    getData()
-    {
-        return this.saves
-    }
-    saveNewData()
-    {
-        this.saves = this.data
-       
-
-    }
-
 
 }
+

@@ -9,19 +9,17 @@ let items = []
 $(document).on("click", "#btnGen", function () {
 
 
-    apiManager.fetchData(function(data){
-
-        render.renderMainUser(data.meanUser)
-        render.renderQuote(data.kanyeQuote)
-        render.renderPokemon(data.pokemon)
-        render.renderMeat(data.meat)
-        render.renderFriends(data.friends)
+    apiManager.fetchData().then(() => {
+        render.renderMainUser(apiManager.data.meanUser)
+        render.renderQuote(apiManager.data.kanyeQuote)
+        render.renderPokemon(apiManager.data.pokemon)
+        render.renderMeat(apiManager.data.meat)
+        render.renderFriends(apiManager.data.friends)
         render.rendersaveFriends(items)
     })
 
-})
-
-
+}
+)
 $(document).on("click", "#btnSave", function () {
     currentData = apiManager.data
     localStorage.setItem('userData', JSON.stringify(currentData))
@@ -58,15 +56,13 @@ $(document).on("click", ".renderObject", function () {
     
 })
 
+apiManager.fetchData().then(() => {
 
-
-apiManager.fetchData(function(data){
-
-    render.renderMainUser(data.meanUser)
-    render.renderQuote(data.kanyeQuote)
-    render.renderPokemon(data.pokemon)
-    render.renderMeat(data.meat)
-    render.renderFriends(data.friends)
-    render.rendersaveFriends(items)
+    render.renderMainUser(apiManager.data.meanUser)
+    render.renderQuote(apiManager.data.kanyeQuote)
+    render.renderPokemon(apiManager.data.pokemon)
+    render.renderMeat(apiManager.data.meat)
+    render.renderFriends(apiManager.data.friends)
+    render.rendersaveFriends(apiManager.items)
 })
 
